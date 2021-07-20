@@ -29,9 +29,10 @@
   <summary><h2 style="display: inline-block">Mục lục</h2></summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">Các yêu cầu cơ bản</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">Phần mềm, công cụ cần có</a></li>
+        <li>
       </ul>
     </li>
     <li>
@@ -55,11 +56,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Here's a blank template to get started:
 **To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
+`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description` -->
 
 
 ### Built With
@@ -68,7 +69,15 @@ Here's a blank template to get started:
 * []()
 * []()
 
-
+<pre>
+<span></span>TensorFlow/
+└─ models/
+   ├─ community/
+   ├─ official/
+   ├─ orbit/
+   ├─ research/
+   └── ...
+</pre>
 
 <!-- GETTING STARTED -->
 ## Getting Started
