@@ -70,7 +70,8 @@ Here's a blank template to get started:
 * []()
 
 <pre>
-<span></span>TensorFlow/
+<span></span>
+TensorFlow/
 └─ models/
    ├─ community/
    ├─ official/
