@@ -65,11 +65,11 @@
 ## Thực hiện
 
 Chạy các lệnh trên Terminal trong thư mục darknet 
-### Installation
+### Cài đặt thư viện
 
-1. Clone the repo
+1. Cái đặt công cụ pip để cài đặt
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   sudo apt install python3-pip
    ```
 2. Install NPM packages
    ```sh
@@ -77,7 +77,7 @@ Chạy các lệnh trên Terminal trong thư mục darknet
    ```
 
 
-### Prerequisites
+### Debug
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
