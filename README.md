@@ -31,68 +31,40 @@
     <li>
       <a href="#about-the-project">Các yêu cầu cơ bản</a>
       <ul>
-        <li><a href="#built-with">Phần mềm, công cụ cần có</a></li>
-        <li>
+        <!-- <li><a href="#built-with">Phần mềm, công cụ cần có</a></li>
+        <li> -->
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">Bắt đầu thực hiện</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#installation">Cài đặt thư viện</a></li>
+        <li><a href="#prerequisites">Debug Darknet</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <li><a href="#usage">Huấn luyện mô hình</a></li>
+    <li><a href="#roadmap">Cấu trúc thư mục</a></li>
+    <li><a href="#contributing">Chức năng cụ thể</a></li>
+    <!-- <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li> -->
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
-
-<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description` -->
-
-
-### Built With
-
-* []()
-* []()
-* []()
-
-<pre>
-<span></span>
-TensorFlow/
-└─ models/
-   ├─ community/
-   ├─ official/
-   ├─ orbit/
-   ├─ research/
-   └── ...
-</pre>
-
+## Các yêu cầu phải có cài đặt
+- **CMake >= 3.18**: https://cmake.org/download/
+- **Powershell** (already installed on windows): https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell
+- **CUDA >= 10.2**: https://developer.nvidia.com/cuda-toolkit-archive (on Linux do [Post-installation Actions](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions))
+- **OpenCV >= 2.4**: use your preferred package manager (brew, apt), build from source using [vcpkg](https://github.com/Microsoft/vcpkg) or download from [OpenCV official site](https://opencv.org/releases.html) (on Windows set system variable `OpenCV_DIR` = `C:\opencv\build` - where are the `include` and `x64` folders [image](https://user-images.githubusercontent.com/4096485/53249516-5130f480-36c9-11e9-8238-a6e82e48c6f2.png))
+- **cuDNN >= 8.0.2** https://developer.nvidia.com/rdp/cudnn-archive (on **Linux** copy `cudnn.h`,`libcudnn.so`... as described here https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#installlinux-tar , on **Windows** copy `cudnn.h`,`cudnn64_7.dll`, `cudnn64_7.lib` as described here https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#installwindows )
+- **GPU with CC >= 3.0**: https://en.wikipedia.org/wiki/CUDA#GPUs_supported
 <!-- GETTING STARTED -->
-## Getting Started
+## Thực hiện
 
-To get a local copy up and running follow these simple steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
+Chạy các lệnh trên Terminal trong thư mục darknet 
 ### Installation
 
 1. Clone the repo
@@ -103,6 +75,15 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install
    ```
+
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
 
 
@@ -116,10 +97,18 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Cấu trúc thư mục
+<pre>
+<span></span>
+darknet/
+├─ backup/
+├─ cfg/
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
-
+    <!-- official/
+   ├─ orbit/
+   ├─ research/
+   └── ... -->
+</pre>
 
 
 <!-- CONTRIBUTING -->
