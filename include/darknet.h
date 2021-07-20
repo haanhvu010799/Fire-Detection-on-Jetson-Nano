@@ -104,7 +104,7 @@ typedef struct tree {
 
 // activations.h
 typedef enum {
-    LOGISTIC, RELU, RELU6, RELIE, LINEAR, RAMP, TANH, PLSE, REVLEAKY, LEAKY, ELU, LOGGY, STAIR, HARDTAN, LHTAN, SELU, GELU, SWISH, MISH, HARD_MISH, NORM_CHAN, NORM_CHAN_SOFTMAX, NORM_CHAN_SOFTMAX_MAXVAL
+    LOGISTIC, RELU, RELU6, RELIE, LINEAR, RAMP, TANH, PLSE, LEAKY, ELU, LOGGY, STAIR, HARDTAN, LHTAN, SELU, GELU, SWISH, MISH, NORM_CHAN, NORM_CHAN_SOFTMAX, NORM_CHAN_SOFTMAX_MAXVAL
 }ACTIVATION;
 
 // parser.h
@@ -142,16 +142,6 @@ typedef enum{
     MULT, ADD, SUB, DIV
 } BINARY_ACTIVATION;
 
-// blas.h
-typedef struct contrastive_params {
-    float sim;
-    float exp_sim;
-    float P;
-    int i, j;
-    int time_step_i, time_step_j;
-} contrastive_params;
-
-
 // layer.h
 typedef enum {
     CONVOLUTIONAL,
@@ -176,7 +166,6 @@ typedef enum {
     GRU,
     LSTM,
     CONV_LSTM,
-    HISTORY,
     CRNN,
     BATCHNORM,
     NETWORK,
@@ -191,9 +180,7 @@ typedef enum {
     LOGXENT,
     L2NORM,
     EMPTY,
-    BLANK,
-    CONTRASTIVE,
-    IMPLICIT
+    BLANK
 } LAYER_TYPE;
 
 // layer.h
@@ -218,7 +205,6 @@ typedef struct update_args {
 struct layer {
     LAYER_TYPE type;
     ACTIVATION activation;
-    ACTIVATION lstm_activation;
     COST_TYPE cost_type;
     void(*forward)   (struct layer, struct network_state);
     void(*backward)  (struct layer, struct network_state);
@@ -237,7 +223,6 @@ struct layer {
     int flipped;
     int inputs;
     int outputs;
-    float mean_alpha;
     int nweights;
     int nbiases;
     int extra;
@@ -246,7 +231,6 @@ struct layer {
     int out_h, out_w, out_c;
     int n;
     int max_boxes;
-    int truth_size;
     int groups;
     int group_id;
     int size;
@@ -257,10 +241,8 @@ struct layer {
     int dilation;
     int antialiasing;
     int maxpool_depth;
-    int maxpool_zero_nonmax;
     int out_channels;
-    float reverse;
-    int coordconv;
+    int reverse;
     int flatten;
     int spatial;
     int pad;
@@ -275,23 +257,18 @@ struct layer {
     int keep_delta_gpu;
     int optimized_memory;
     int steps;
-    int history_size;
-    int bottleneck;
-    float time_normalizer;
     int state_constrain;
     int hidden;
     int truth;
     float smooth;
     float dot;
     int deform;
-    int grad_centr;
     int sway;
     int rotate;
     int stretch;
     int stretch_sway;
     float angle;
     float jitter;
-    float resize;
     float saturation;
     float exposure;
     float shift;
@@ -304,15 +281,6 @@ struct layer {
     int noloss;
     int softmax;
     int classes;
-    int detection;
-    int embedding_layer_id;
-    float *embedding_output;
-    int embedding_size;
-    float sim_thresh;
-    int track_history_size;
-    int dets_for_track;
-    int dets_for_show;
-    float track_ciou_norm;
     int coords;
     int background;
     int rescore;
@@ -383,19 +351,12 @@ struct layer {
     float **layers_output;
     float **layers_delta;
     WEIGHTS_TYPE_T weights_type;
-    WEIGHTS_NORMALIZATION_T weights_normalization;
+    WEIGHTS_NORMALIZATION_T weights_normalizion;
     int   * map;
     int   * counts;
     float ** sums;
     float * rand;
     float * cost;
-    int *labels;
-    int *class_ids;
-    int contrastive_neg_max;
-    float *cos_sim;
-    float *exp_cos_sim;
-    float *p_constrastive;
-    contrastive_params *contrast_p_gpu;
     float * state;
     float * prev_state;
     float * forgot_state;
@@ -415,23 +376,14 @@ struct layer {
     float *scales;
     float *scale_updates;
 
-    float *weights_ema;
-    float *biases_ema;
-    float *scales_ema;
-
     float *weights;
     float *weight_updates;
 
     float scale_x_y;
-    int objectness_smooth;
-    int new_coords;
-    int show_details;
     float max_delta;
     float uc_normalizer;
     float iou_normalizer;
-    float obj_normalizer;
     float cls_normalizer;
-    float delta_normalizer;
     IOU_LOSS iou_loss;
     IOU_LOSS iou_thresh_kind;
     NMS_KIND nms_kind;
@@ -558,15 +510,10 @@ struct layer {
 //#ifdef GPU
     int *indexes_gpu;
 
-    int stream;
-    int wait_stream_id;
-
     float *z_gpu;
     float *r_gpu;
     float *h_gpu;
     float *stored_h_gpu;
-    float *bottelneck_hi_gpu;
-    float *bottelneck_delta_gpu;
 
     float *temp_gpu;
     float *temp2_gpu;
@@ -647,11 +594,9 @@ struct layer {
 
     float * input_antialiasing_gpu;
     float * output_gpu;
-    float * output_avg_gpu;
     float * activation_input_gpu;
     float * loss_gpu;
     float * delta_gpu;
-    float * cos_sim_gpu;
     float * rand_gpu;
     float * drop_blocks_scale;
     float * drop_blocks_scale_gpu;
@@ -705,15 +650,6 @@ typedef struct network {
     int n;
     int batch;
     uint64_t *seen;
-    float *badlabels_reject_threshold;
-    float *delta_rolling_max;
-    float *delta_rolling_avg;
-    float *delta_rolling_std;
-    int weights_reject_freq;
-    int equidistant_point;
-    float badlabels_rejection_percentage;
-    float num_sigmas_reject_badlabels;
-    float ema_alpha;
     int *cur_iteration;
     float loss_scale;
     int *t;
@@ -723,8 +659,6 @@ typedef struct network {
     float *output;
     learning_rate_policy policy;
     int benchmark_layers;
-    int *total_bbox;
-    int *rewritten_bbox;
 
     float learning_rate;
     float learning_rate_min;
@@ -770,15 +704,9 @@ typedef struct network {
     float label_smooth_eps;
     int resize_step;
     int attention;
-    int adversarial;
+    int adversarial;    
     float adversarial_lr;
-    float max_chart_loss;
     int letter_box;
-    int mosaic_bound;
-    int contrastive;
-    int contrastive_jit_flip;
-    int contrastive_color;
-    int unsupervised;
     float angle;
     float aspect;
     float exposure;
@@ -821,11 +749,6 @@ typedef struct network {
     size_t *max_input16_size;
     size_t *max_output16_size;
     int wait_stream;
-
-    void *cuda_graph;
-    void *cuda_graph_exec;
-    int use_cuda_graph;
-    int *cuda_graph_ready;
 
     float *global_delta_gpu;
     float *state_delta_gpu;
@@ -905,10 +828,6 @@ typedef struct detection{
     int sort_class;
     float *uc; // Gaussian_YOLOv3 - tx,ty,tw,th uncertainty
     int points; // bit-0 - center, bit-1 - top-left-corner, bit-2 - bottom-right-corner
-    float *embeddings;  // embeddings for tracking
-    int embedding_size;
-    float sim;
-    int track_id;
 } detection;
 
 // network.c -batch inference
@@ -954,7 +873,6 @@ typedef struct load_args {
     int nh;
     int nw;
     int num_boxes;
-    int truth_size;
     int min, max, size;
     int classes;
     int background;
@@ -965,14 +883,9 @@ typedef struct load_args {
     int track;
     int augment_speed;
     int letter_box;
-    int mosaic_bound;
     int show_imgs;
     int dontuse_opencv;
-    int contrastive;
-    int contrastive_jit_flip;
-    int contrastive_color;
     float jitter;
-    float resize;
     int flip;
     int gaussian_noise;
     int blur;
@@ -993,7 +906,6 @@ typedef struct load_args {
 // data.h
 typedef struct box_label {
     int id;
-    int track_id;
     float x, y, w, h;
     float left, right, top, bottom;
 } box_label;
@@ -1011,14 +923,15 @@ typedef struct box_label {
 //    node *front;
 //    node *back;
 //} list;
+
 // -----------------------------------------------------
 
 
 // parser.c
 LIB_API network *load_network(char *cfg, char *weights, int clear);
 LIB_API network *load_network_custom(char *cfg, char *weights, int clear, int batch);
+LIB_API network *load_network(char *cfg, char *weights, int clear);
 LIB_API void free_network(network net);
-LIB_API void free_network_ptr(network* net);
 
 // network.c
 LIB_API load_args get_base_args(network *net);
@@ -1046,7 +959,7 @@ LIB_API void reset_rnn(network *net);
 LIB_API float *network_predict_image(network *net, image im);
 LIB_API float *network_predict_image_letterbox(network *net, image im);
 LIB_API float validate_detector_map(char *datacfg, char *cfgfile, char *weightfile, float thresh_calc_avg_iou, const float iou_thresh, const int map_points, int letter_box, network *existing_net);
-LIB_API void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, int ngpus, int clear, int dont_show, int calc_map, float thresh, float iou_thresh, int mjpeg_port, int show_imgs, int benchmark_layers, char* chart_path);
+LIB_API void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, int ngpus, int clear, int dont_show, int calc_map, int mjpeg_port, int show_imgs, int benchmark_layers, char* chart_path);
 LIB_API void test_detector(char *datacfg, char *cfgfile, char *weightfile, char *filename, float thresh,
     float hier_thresh, int dont_show, int ext_output, int save_labels, char *outfile, int letter_box, int benchmark_layers);
 LIB_API int network_width(network *net);
@@ -1055,7 +968,7 @@ LIB_API void optimize_picture(network *net, image orig, int max_layer, float sca
 
 // image.h
 LIB_API void make_image_red(image im);
-LIB_API image make_attention_image(int img_size, float *original_delta_cpu, float *original_input_cpu, int w, int h, int c, float alpha);
+LIB_API image make_attention_image(int img_size, float *original_delta_cpu, float *original_input_cpu, int w, int h, int c);
 LIB_API image resize_image(image im, int w, int h);
 LIB_API void quantize_image(image im);
 LIB_API void copy_image_from_bytes(image im, char *pdata);
@@ -1105,10 +1018,6 @@ double get_time();
 void stop_timer_and_show();
 void stop_timer_and_show_name(char *name);
 void show_total_time();
-
-LIB_API void set_track_id(detection *new_dets, int new_dets_num, float thresh, float sim_thresh, float track_ciou_norm, int deque_size, int dets_for_track, int dets_for_show);
-LIB_API int fill_remaining_id(detection *new_dets, int new_dets_num, int new_track_id, float thresh);
-
 
 // gemm.h
 LIB_API void init_cpu();
