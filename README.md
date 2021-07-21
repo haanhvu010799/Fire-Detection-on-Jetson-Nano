@@ -96,7 +96,7 @@ Sau khi có đầy đủ các công cụ hỗ trợ, cài Darknet theo hướng 
    ```
 4. Train model
    ```sh
-  ./darknet detector train yolo.data cfg/yolov4-tiny.cfg yolov4-tiny.conv.29 -dont_show 
+    ./darknet detector train yolo.data cfg/yolov4-tiny.cfg yolov4-tiny.conv.29 -dont_show 
    ```  
 <!-- ROADMAP -->
 ## Cấu trúc thư mục
