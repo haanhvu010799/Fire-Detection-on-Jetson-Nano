@@ -71,30 +71,24 @@ Chạy các lệnh trên Terminal trong thư mục darknet
    ```sh
    sudo apt install python3-pip
    ```
-2. Install NPM packages
+2. Cài đặt các thư viện hỗ trợ
    ```sh
-   npm install
+   pip3 install -r requirements-gpu.txt
    ```
 
 
 ### Debug
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+Sau khi có đầy đủ các công cụ hỗ trợ, cài Darknet theo hướng dẫn trong link dưới
   ```sh
-  npm install npm@latest -g
+  https://pjreddie.com/darknet/install/
   ```
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
+## Huấn luyện mô hình
+1. Dowload Dataset cùng Label để vào 1 thư mục firedata
+2. Cái đặt công cụ pip để cài đặt
+   ```sh
+   sudo apt install python3-pip
+   ```
 
 <!-- ROADMAP -->
 ## Cấu trúc thư mục
