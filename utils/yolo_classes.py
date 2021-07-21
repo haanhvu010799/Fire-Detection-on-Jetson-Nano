@@ -1,10 +1,9 @@
 """yolo_classes.py
-
 NOTE: Number of YOLO COCO output classes differs from SSD COCO models.
 """
 
 COCO_CLASSES_LIST = [
-    'person',
+    'fire',
     'bicycle',
     'car',
     'motorbike',
@@ -102,3 +101,4 @@ def get_cls_dict(category_num):
         return {i: n for i, n in enumerate(COCO_CLASSES_LIST)}
     else:
         return {i: 'CLS%d' % i for i in range(category_num)}
+

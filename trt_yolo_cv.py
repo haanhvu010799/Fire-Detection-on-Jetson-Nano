@@ -25,13 +25,13 @@ def parse_args():
             'video and save BBoxed overlaid output as another video.')
     parser = argparse.ArgumentParser(description=desc)
     parser.add_argument(
-        '-v', '--video', type=str, required=True,
+        '-v', '--video', type=str,
         help='input video file name')
     parser.add_argument(
-        '-o', '--output', type=str, required=True,
+        '-o', '--output', type=str,
         help='output video file name')
     parser.add_argument(
-        '-c', '--category_num', type=int, default=80,
+        '-c', '--category_num', type=int, default=1,
         help='number of object categories [80]')
     parser.add_argument(
         '-m', '--model', type=str, required=True,
