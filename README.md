@@ -9,16 +9,9 @@
   <h3 align="center">Xây dụng mô hình Yolov3, Yolov4 trên Window hoặc Linux</h3>
 
   <p align="center">
-    Nền tảng Darknet hỗ trợ Train model Yolov3, Yolov4. Vì quá trình thực hiện dài và tiêu tốn tài nguyên máy tính, cho nên phải train trên Google Colab.
+    Nền tảng Darknet hỗ trợ Train model Yolov3, Yolov4. Vì quá trình thực hiện dài và tiêu tốn tài nguyên máy tính, cho nên phải train trên Google Colab. Để tránh xảy ra lỗi, tốt nhất phải train trên Linux. 
     <br />
-    <!-- <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a> -->
+    Branch này là branch gốc, dùng để đào tạo mô hình, chị sử dụng trên Laptop, nếu muốn sử dụng trên thiết bị nhúng cần tối ưu lại qua định dạng khác.
   </p>
 </p>
 
@@ -44,7 +37,7 @@
     </li>
     <li><a href="#usage">Huấn luyện mô hình</a></li>
     <li><a href="#roadmap">Cấu trúc thư mục</a></li>
-    <li><a href="#contributing">Chức năng cụ thể</a></li>
+    <li><a href="#contributing">Cách chạy mô hình</a></li>
     <!-- <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li> -->
@@ -84,20 +77,39 @@ Sau khi có đầy đủ các công cụ hỗ trợ, cài Darknet theo hướng 
   ```
 
 ## Huấn luyện mô hình
-1. Dowload Dataset cùng Label để vào 1 thư mục firedata
-2. Cái đặt công cụ pip để cài đặt
-   ```sh
-   sudo apt install python3-pip
+1. Dowload Dataset cùng Label để vào 1 thư mục firedata, chạy file TrainSplit.py để tách ra giữa lượng ảnh Train và Valid
+  ```sh
+   python3 trainsplit.py
    ```
-
+2. Tải Pretrain Model tại đây, có nhiều sự lựa chọn
+  ```sh
+  https://github.com/AlexeyAB/darknet#pre-trained-models
+  ```
+3. Tạo hai file yolo.names và yolo.data
+   ```sh
+    echo "fire" > yolo.names
+    echo classes=1 > yolo.data
+    echo train=train.txt >> yolo.data
+    echo valid=val.txt >> yolo.data
+    echo names=yolo.names >> yolo.data
+    echo backup=backup >> yolo.data
+   ```
+4. Train model
+   ```sh
+  ./darknet detector train yolo.data cfg/yolov4-tiny.cfg yolov4-tiny.conv.29 -dont_show 
+   ```  
 <!-- ROADMAP -->
 ## Cấu trúc thư mục
 <pre>
 <span></span>
 darknet/
-├─ backup/
-├─ cfg/
-
+├─ backup/ # Nơi chứa Weights khi Train
+├─ cfg/    # Nơi chứa các file cấu hình
+├─ firedata/  # Dataset
+├─ result/  # Kết quả train biểu diễn bằng đồ thị
+├─ test/  # Chứa hình ảnh để test
+├─ darknet.py # Detect trên ảnh
+├─ darknet_video.py #Detect trên Video
     <!-- official/
    ├─ orbit/
    ├─ research/
@@ -106,27 +118,18 @@ darknet/
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## Cách chạy mô hình
+Trên linux sử dụng  `./darknet` trên terminal thay vì `darknet.exe`, ví dụ:`./darknet detector test ./yolo.data ./cfg/yolov4-tiny.cfg ./yolov4.weights`
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+- Yolo v4 COCO - **chạy ảnh**: `darknet.exe detector test yolo.data cfg/yolov4-tiny.cfg yolov4.weights -thresh 0.25`
+- **Output coordinates** of objects: `darknet.exe detector test yolo.data yolov4-tiny.cfg yolov4.weights -ext_output dog.jpg`
+- Yolo v4 COCO - **chạy video**: `darknet.exe detector demo yolo.data cfg/yolov4-tiny.cfg yolov4.weights -ext_output test.mp4`
+- Yolo v4 COCO - **chạy WebCam 0**: `darknet.exe detector demo yolo.data cfg/yolov4-tiny.cfg yolov4.weights -c 0`
+- Yolo v4 COCO for **net-videocam** - Smart WebCam: `darknet.exe detector demo yolo.data cfg/yolov4-tiny.cfg yolov4.weights http://192.168.0.80:8080/video?dummy=param.mjpg`
+- Yolo v4 - **lưu kết quả dưới dạng videofile res.avi**: `darknet.exe detector demo yolo.data cfg/yolov4-tiny.cfg yolov4.weights test.mp4 -out_filename res.avi`
+- Kiểm tra accuracy: `darknet.exe detector map yolo.data cfg/yolov4-tiny.cfg backup\{tên file weights vừa train xong}
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
-
-<!-- CONTACT -->
-## Contact
+<!-- ## Contact
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
 
@@ -135,27 +138,4 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 
 <!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
-
-
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/github_username
+<!-- ## Acknowledgements --> -->
