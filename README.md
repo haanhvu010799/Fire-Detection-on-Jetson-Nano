@@ -127,7 +127,7 @@ Trên linux sử dụng  `./darknet` trên terminal thay vì `darknet.exe`, ví 
 - Yolo v4 COCO - **chạy WebCam 0**: `darknet.exe detector demo yolo.data cfg/yolov4-tiny.cfg yolov4.weights -c 0`
 - Yolo v4 COCO for **net-videocam** - Smart WebCam: `darknet.exe detector demo yolo.data cfg/yolov4-tiny.cfg yolov4.weights http://192.168.0.80:8080/video?dummy=param.mjpg`
 - Yolo v4 - **lưu kết quả dưới dạng videofile res.avi**: `darknet.exe detector demo yolo.data cfg/yolov4-tiny.cfg yolov4.weights test.mp4 -out_filename res.avi`
-- Kiểm tra accuracy: `darknet.exe detector map yolo.data cfg/yolov4-tiny.cfg backup\{tên file weights vừa train xong}
+- Kiểm tra accuracy: `darknet.exe detector map yolo.data cfg/yolov4-tiny.cfg backup\{tên file weights vừa train xong}`
 
 <!-- ## Contact
 
