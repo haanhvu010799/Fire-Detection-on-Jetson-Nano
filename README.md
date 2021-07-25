@@ -3,6 +3,9 @@ mỗi branch là một model khác nhau
 # tensorrt_demos
 <p align="center">
     <p align="center">
+        <a href="https://github.com/haanhvu010799/Code-KLTN">
+        <img src="https://tuoitre.uit.edu.vn/wp-content/uploads/2015/07/logo-uit.png" alt="Logo" width="80" height="80">
+        </a>
         <br />
         <a href="https://drive.google.com/drive/folders/10h3T-nEOYtlPWOzyAg61bO8PoTDAY0ON?usp=sharing">View Demo</a>
         ·
