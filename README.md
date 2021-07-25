@@ -2,7 +2,7 @@
 mỗi branch là một model khác nhau
 # tensorrt_demos
 <p align="center">
-  
+
     <br />
     <a href="https://drive.google.com/drive/folders/10h3T-nEOYtlPWOzyAg61bO8PoTDAY0ON?usp=sharing">View Demo</a>
     ·
