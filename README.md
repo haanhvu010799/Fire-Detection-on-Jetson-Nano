@@ -14,17 +14,9 @@ mỗi branch là một model khác nhau
 <a name="prerequisite"></a>
 Prerequisite
 ------------
-
-
-* Demo #1 and Demo #2: works for TensorRT 3.x+,
-* Demo #3: requires TensoRT 5.x+,
-* Demo #4 and Demo #5: requires TensorRT 6.x+.
-* Demo #6 part 1: INT8 requires TensorRT 6.x+ and only works on GPUs with CUDA compute 6.1+.
-* Demo #6 part 2: DLA core requires TensorRT 7.x+ (is only tested on Jetson Xavier NX).
-* Demo #7: requires TensorRT 7.x+.
-
-You could check which version of TensorRT has been installed on your Jetson system by looking at file names of the libraries.  For example, TensorRT v5.1.6 (JetPack-4.2.2) was present on one of my Jetson Nano DevKits.
-
+* Yêu cầu 1: Phải thực hiện trên thiết bị Jetson Nano bản 2GB, hệ điều hành Jetpack phiên bản 4.5.1 
+* Yêu cầu 2: TensorRT phiên bản từ 6 trở lên, ngoài ra phải cài Tensorflow phiên bản 2.3.0
+* Yêu cầu 3: Có đầy đủ các thư viện cần thiết, xem danh sách <a href="https://github.com/haanhvu010799/Code-KLTN/blob/main/requirements-gpu.txt">tại đây</a>
 ```shell
 $ ls /usr/lib/aarch64-linux-gnu/libnvinfer.so*
 /usr/lib/aarch64-linux-gnu/libnvinfer.so
