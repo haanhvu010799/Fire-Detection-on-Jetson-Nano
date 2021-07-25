@@ -1,6 +1,22 @@
 # Code-KLTN
 mỗi branch là một model khác nhau
 # tensorrt_demos
+<p align="center">
+    Nền tảng Darknet hỗ trợ Train model Yolov3, Yolov4. Vì quá trình thực hiện dài và tiêu tốn tài nguyên máy tính, cho nên phải train trên Google Colab. Để tránh xảy ra lỗi, tốt nhất phải train trên Linux. 
+    <br />
+    Branch này là branch gốc, dùng để đào tạo mô hình, chị sử dụng trên Laptop, nếu muốn sử dụng trên thiết bị nhúng cần tối ưu lại qua định dạng khác.
+    <br />
+    <a href="https://drive.google.com/drive/folders/10h3T-nEOYtlPWOzyAg61bO8PoTDAY0ON?usp=sharing">View Demo</a>
+    ·
+    <a href="https://github.com/haanhvu010799/Code-KLTN/tree/TensorRT">Model TensorRT triển khai trên Jetson Nano</a>
+    ·
+    <a href="https://github.com/haanhvu010799/Code-KLTN">Model huấn luyện Yolov3, Yolov4</a>
+    ·
+    <a href="https://github.com/haanhvu010799/Code-KLTN/tree/yolov5">Model Yolov5</a>
+    ·
+    <a href="https://github.com/haanhvu010799/Code-KLTN/tree/TFlite">Model Tflite được tối ưu hóa từ Yolo</a>
+  </p>
+</p>
 
 * [Prerequisite](#prerequisite)
 <!-- * [Demo #1: GoogLeNet](#googlenet)
