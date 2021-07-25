@@ -1,6 +1,6 @@
 # Code-KLTN
 mỗi branch là một model khác nhau
-# tensorrt_demos
+# Mô hình TensorRT chạy trên thiết bị Jetson Nano
 <p align="center">
     <p align="center">
         <a href="https://github.com/haanhvu010799/Code-KLTN">
