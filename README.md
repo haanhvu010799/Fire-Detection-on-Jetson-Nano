@@ -79,7 +79,7 @@ Ví dụ, chạy Camera được kết nối bằng USB để thu hình ảnh ta
     ```shell
    $ cd ${HOME}/project/tensorrt_demos
    $ python3 trt_yolo.py --usb 0 -m yolo4-tiny-416
-   ```
+    ```
 Ví dụ, chạy Video định dạng mp4 với tên test.mp4:
     ```shell
    $ cd ${HOME}/project/tensorrt_demos
