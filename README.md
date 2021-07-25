@@ -2,17 +2,17 @@
 mỗi branch là một model khác nhau
 # tensorrt_demos
 <p align="center">
-
-    <br />
-    <a href="https://drive.google.com/drive/folders/10h3T-nEOYtlPWOzyAg61bO8PoTDAY0ON?usp=sharing">View Demo</a>
-    ·
-    <a href="https://github.com/haanhvu010799/Code-KLTN/tree/TensorRT">Model TensorRT triển khai trên Jetson Nano</a>
-    ·
-    <a href="https://github.com/haanhvu010799/Code-KLTN">Model huấn luyện Yolov3, Yolov4</a>
-    ·
-    <a href="https://github.com/haanhvu010799/Code-KLTN/tree/yolov5">Model Yolov5</a>
-    ·
-    <a href="https://github.com/haanhvu010799/Code-KLTN/tree/TFlite">Model Tflite được tối ưu hóa từ Yolo</a>
+    <p>
+        <br />
+        <a href="https://drive.google.com/drive/folders/10h3T-nEOYtlPWOzyAg61bO8PoTDAY0ON?usp=sharing">View Demo</a>
+        ·
+        <a href="https://github.com/haanhvu010799/Code-KLTN/tree/TensorRT">Model TensorRT triển khai trên Jetson Nano</a>
+        ·
+        <a href="https://github.com/haanhvu010799/Code-KLTN">Model huấn luyện Yolov3, Yolov4</a>
+        ·
+        <a href="https://github.com/haanhvu010799/Code-KLTN/tree/yolov5">Model Yolov5</a>
+        ·
+        <a href="https://github.com/haanhvu010799/Code-KLTN/tree/TFlite">Model Tflite được tối ưu hóa từ Yolo</a>
   </p>
 </p>
 
