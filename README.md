@@ -1,10 +1,10 @@
 
-<h2>Convert từ file .weights của Darknet sang Tensorflow</h2>
+<h2>Cách tối ưu hóa mô hình Yolo về mô hình TFLite</h2>
 ## Cách cài đặt
 
 ```
 
-### Pip (tốt nhất nên cài 2 phiên bản, vì Jetson Nano chỉ dùng CPU)
+### Pip (tốt nhất nên cài 2 phiên bản, vì Jetson Nano chỉ dùng CPU, các thiết bị khác sẽ hỗ trợ cả GPU như PC , Ras Pi, Coral)
 ```bash
 # TensorFlow CPU
 pip install -r requirements.txt
@@ -14,10 +14,10 @@ pip install -r requirements-gpu.txt
 ```
 
 
-## Cách chạy Model (tf, .pb model)
-To implement YOLOv4 using TensorFlow, first we convert the .weights into the corresponding TensorFlow model files and then run the model.
+## Chuyển đổi Model Yolo về Model Tensorflow (tf, .pb model)
+
 ```bash
-# Convert darknet weights to tensorflow
+# Đưa các Model Darknet về Tensorflow
 ## yolov4
 python save_model.py --weights ./data/yolov4.weights --output ./checkpoints/yolov4-416 --input_size 416 --model yolov4 
 
@@ -45,11 +45,10 @@ python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yol
 # Run yolov4 on webcam
 python detect_video.py --weights ./checkpoints/yolov4-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi
 ```
-If you want to run yolov3 or yolov3-tiny change ``--model yolov3`` and .weights file in above commands.
+Nếu muốn chạy yolov3 hoặc yolov3-tiny thay đổi cú pháp ``--model yolov3`` và đuôi .weights
 
-<strong>Note:</strong> You can also run the detector on multiple images at once by changing the --images flag like such ``--images "./data/images/kite.jpg, ./data/images/dog.jpg"``
 
-### Result Image(s) (Regular TensorFlow)
+<!-- ### Result Image(s) (Regular TensorFlow)
 You can find the outputted image(s) showing the detections saved within the 'detections' folder.
 #### Pre-trained YOLOv4 Model Example
 <p align="center"><img src="data/helpers/result.png" width="640"\></p>
@@ -59,10 +58,10 @@ You can find the outputted image(s) showing the detections saved within the 'det
 
 ### Result Video
 Video saves wherever you point --output flag to. If you don't set the flag then your video will not be saved with detections on it.
-<p align="center"><img src="data/helpers/demo.gif"\></p>
+<p align="center"><img src="data/helpers/demo.gif"\></p> -->
 
-## YOLOv4 Using TensorFlow Lite (.tflite model)
-Can also implement YOLOv4 using TensorFlow Lite. TensorFlow Lite is a much smaller model and perfect for mobile or edge devices (raspberry pi, etc).
+## Chuyển đổi Yolo về Tensorflow Lite (.tflite model)
+
 ```bash
 # Save tf model for tflite converting
 python save_model.py --weights ./data/yolov4.weights --output ./checkpoints/yolov4-416 --input_size 416 --model yolov4 --framework tflite
@@ -88,7 +87,7 @@ python detect.py --weights ./checkpoints/yolov4-416.tflite --size 416 --model yo
 # Run custom tflite model
 python detect.py --weights ./checkpoints/custom-416.tflite --size 416 --model yolov4 --images ./data/images/car.jpg --framework tflite
 ```
-### Result Image (TensorFlow Lite)
+<!-- ### Result Image (TensorFlow Lite)
 You can find the outputted image(s) showing the detections saved within the 'detections' folder.
 #### TensorFlow Lite int8 Example
 <p align="center"><img src="data/helpers/result-int8.png" width="640"\></p>
@@ -109,9 +108,9 @@ python convert_trt.py --weights ./checkpoints/yolov3-tiny.tf --quantize_mode flo
 python save_model.py --weights ./data/yolov4.weights --output ./checkpoints/yolov4.tf --input_size 416 --model yolov4
 python convert_trt.py --weights ./checkpoints/yolov4.tf --quantize_mode float16 --output ./checkpoints/yolov4-trt-fp16-416
 python detect.py --weights ./checkpoints/yolov4-trt-fp16-416 --model yolov4 --images ./data/images/kite.jpg --framework trt
-```
+``` -->
 
-## Command Line Args Reference
+## Cú pháp để chạy Model
 
 ```bash
 save_model.py:
@@ -171,7 +170,7 @@ detect_video.py:
     (default: 0.25)
 ```
 
-## Evaluate on COCO 2017 Dataset
+<!-- ## Evaluate on COCO 2017 Dataset
 ```bash
 # run script in /script/get_coco_dataset_2017.sh to download COCO 2017 Dataset
 # preprocess coco dataset
@@ -242,8 +241,8 @@ python benchmarks.py --size 416 --model yolov4 --weights ./data/yolov4.weights
 |-------------|---------|---------|---------|
 | YoloV3 FPS  |         |         |         |
 | YoloV4 FPS  |         |         |         |
-
-## Traning your own model in TensorFlow
+ -->
+## Cách huấn luyện mô hình Tensorflow
 ```bash
 # Prepare your dataset
 # If you want to train from scratch:
@@ -254,11 +253,11 @@ python train.py
 # Transfer learning: 
 python train.py --weights ./data/yolov4.weights
 ```
-The training performance is not fully reproduced yet, so I recommended to use Alex's [Darknet](https://github.com/AlexeyAB/darknet) to train your own data, then convert the .weights to tensorflow or tflite.
+Tuy có thể tạo ra mô hình riêng từ phương pháp huấn luyện nay, nhưng không khuyến nghị sử dụng. Thay vào đó thì nên áp dụng mô hình Yolo và chuyển đổi theo các bước trên để tiết kiệm thời gian.
 
-<strong>Use this video to train your own model easily in Google Colab: https://www.youtube.com/watch?v=mmj3nxGT2YQ </strong>
+<strong>Để bảo vệ máy tính, hãy huấn luyện trên Google Colab</strong>
 
-### TODO
+<!-- ### TODO
 * [x] Convert YOLOv4 to TensorRT
 * [x] YOLOv4 tflite on android
 * [ ] YOLOv4 tflite on ios
@@ -278,3 +277,4 @@ The training performance is not fully reproduced yet, so I recommended to use Al
    My project is inspired by these previous fantastic YOLOv3 implementations:
   * [Yolov3 tensorflow](https://github.com/YunYang1994/tensorflow-yolov3)
   * [Yolov3 tf2](https://github.com/zzh8829/yolov3-tf2)
+ -->
